@@ -35,3 +35,5 @@ tags
 mkmf.log
 __pycache__/*
 *.pyc
+
+.vscode/

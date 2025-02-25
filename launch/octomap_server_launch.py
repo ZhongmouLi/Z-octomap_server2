@@ -8,18 +8,21 @@ from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     return LaunchDescription([
-        DeclareLaunchArgument('input_cloud_topic', default_value='/livox/lidar'),
-        DeclareLaunchArgument('resolution', default_value='0.15'),
+        DeclareLaunchArgument('input_cloud_topic', default_value='/lio_sam/mapping/cloud_registered'), #/lio_sam/mapping/map_global
+        DeclareLaunchArgument('resolution', default_value='0.05'),
         DeclareLaunchArgument('frame_id', default_value='map'),
-        DeclareLaunchArgument('base_frame_id', default_value='base_footprint'),
+        DeclareLaunchArgument('base_frame_id', default_value='base_link'),
         DeclareLaunchArgument('height_map', default_value='True'),
-        DeclareLaunchArgument('colored_map', default_value='True'),
+        DeclareLaunchArgument('colored_map', default_value='False'),
         DeclareLaunchArgument('color_factor', default_value='0.8'),
         DeclareLaunchArgument('filter_ground', default_value='False'),
         DeclareLaunchArgument('filter_speckles', default_value='False'),
-        DeclareLaunchArgument('ground_filter/distance', default_value='0.04'),
-        DeclareLaunchArgument('ground_filter/angle', default_value='0.15'),
-        DeclareLaunchArgument('ground_filter/plane_distance', default_value='0.07'),
+        DeclareLaunchArgument('ground_filter/distance', default_value='0.08'),
+        DeclareLaunchArgument('ground_filter/angle', default_value='0.01'),
+        DeclareLaunchArgument('ground_filter/plane_distance', default_value='0.01'),
+        # Added occupancy min/max z parameters
+        DeclareLaunchArgument('occupancy_min_z', default_value='0.15'),
+        DeclareLaunchArgument('occupancy_max_z', default_value='2.0'),
         DeclareLaunchArgument('compress_map', default_value='True'),
         DeclareLaunchArgument('incremental_2D_projection', default_value='False'),
         DeclareLaunchArgument('sensor_model/max_range', default_value='-1.0'),
@@ -52,6 +55,9 @@ def generate_launch_description():
                          'ground_filter/distance': LaunchConfiguration('ground_filter/distance'),
                          'ground_filter/angle': LaunchConfiguration('ground_filter/angle'),
                          'ground_filter/plane_distance': LaunchConfiguration('ground_filter/plane_distance'),
+                         # Added occupancy min/max z parameters
+                         'occupancy_min_z': LaunchConfiguration('occupancy_min_z'),
+                         'occupancy_max_z': LaunchConfiguration('occupancy_max_z'),
                          'compress_map': LaunchConfiguration('compress_map'),
                          'incremental_2D_projection': LaunchConfiguration('incremental_2D_projection'),
                          'sensor_model/max_range': LaunchConfiguration('sensor_model/max_range'),

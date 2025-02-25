@@ -8,6 +8,7 @@ from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     return LaunchDescription([
+        DeclareLaunchArgument('map_generated', default_value='/map'),
         DeclareLaunchArgument('input_cloud_topic', default_value='/lio_sam/mapping/cloud_registered'), #/lio_sam/mapping/map_global
         DeclareLaunchArgument('resolution', default_value='0.05'),
         DeclareLaunchArgument('frame_id', default_value='map'),
@@ -43,7 +44,10 @@ def generate_launch_description():
             package='octomap_server2',
             executable='octomap_server',
             output='screen',
-            remappings=[('cloud_in', LaunchConfiguration('input_cloud_topic'))],
+            remappings=[
+                ('cloud_in', LaunchConfiguration('input_cloud_topic')),
+                ('projected_map', LaunchConfiguration('map_generated')),
+                ],
             parameters=[{'resolution': LaunchConfiguration('resolution'),
                          'frame_id': LaunchConfiguration('frame_id'),
                          'base_frame_id': LaunchConfiguration('base_frame_id'),

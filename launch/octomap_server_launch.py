@@ -22,8 +22,8 @@ def generate_launch_description():
         DeclareLaunchArgument('ground_filter/angle', default_value='0.01'),
         DeclareLaunchArgument('ground_filter/plane_distance', default_value='0.01'),
         # Added occupancy min/max z parameters
-        DeclareLaunchArgument('occupancy_min_z', default_value='0.15'),
-        DeclareLaunchArgument('occupancy_max_z', default_value='2.0'),
+        DeclareLaunchArgument('occupancy_min_z', default_value='0.03'),
+        DeclareLaunchArgument('occupancy_max_z', default_value='0.5'),
         DeclareLaunchArgument('compress_map', default_value='True'),
         DeclareLaunchArgument('incremental_2D_projection', default_value='False'),
         DeclareLaunchArgument('sensor_model/max_range', default_value='-1.0'),
